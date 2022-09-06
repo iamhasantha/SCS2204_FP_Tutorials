@@ -12,7 +12,7 @@ object caeserCipher{
             val ch = alphabet.indexOf(c.toUpper)
 
             if(ch == -1) {
-                c
+                c // return character if it's not in the alphabet
             }
             else {
                 alphabet((ch + shift) % alphabet.size)
@@ -24,7 +24,7 @@ object caeserCipher{
     
     def decryption():Any={
         val scrtMsg = scala.io.StdIn.readLine("Encrypted Message: ")
-        val shift = (alphabet.size - scala.io.StdIn.readLine("Backward By: ").toInt) % alphabet.size
+        val back = (alphabet.size - scala.io.StdIn.readLine("Backward By: ").toInt) % alphabet.size
 
         val decryptedMsg = scrtMsg.map((c:Char) => {
 
@@ -34,7 +34,7 @@ object caeserCipher{
                 c
             }
             else {
-                alphabet((ch + shift) % alphabet.size)
+                alphabet((ch + back) % alphabet.size)
             }
         });
         println(decryptedMsg);
@@ -52,6 +52,4 @@ object caeserCipher{
                 case _ => println("Invalid input")
             }
     }
-
-
 }
