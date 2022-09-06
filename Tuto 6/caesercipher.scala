@@ -1,10 +1,11 @@
 object caeserCipher{
-    
-    val alphabet = 'A' to 'Z'
+
+    val alphabet = 'A' to 'Z' // define alphabet 
 
     def encryption():Any={
-        val scrtMsg = scala.io.StdIn.readLine("Secret Message: ")
-        val shift = (scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size) % alphabet.size
+        val scrtMsg = scala.io.StdIn.readLine("Secret Message: ") // read secret message
+        val shift = (scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size) % alphabet.size // characters to shift
+
 
         val encryptedMsg = scrtMsg.map((c:Char) => {
 
@@ -23,7 +24,7 @@ object caeserCipher{
     
     def decryption():Any={
         val scrtMsg = scala.io.StdIn.readLine("Encrypted Message: ")
-        val shift = (scala.io.StdIn.readLine("Backward By: ").toInt + alphabet.size) % alphabet.size
+        val shift = (alphabet.size - scala.io.StdIn.readLine("Backward By: ").toInt) % alphabet.size
 
         val decryptedMsg = scrtMsg.map((c:Char) => {
 
@@ -33,23 +34,23 @@ object caeserCipher{
                 c
             }
             else {
-                alphabet((ch - shift) % alphabet.size)
+                alphabet((ch + shift) % alphabet.size)
             }
         });
         println(decryptedMsg);
     }
 
     def main(args: Array[String]) = {
-    
-        println("Cesar's cipher algorithm")
-        println("1. Encrypt message")
-        println("2. Decrypt message")
-        val choice = scala.io.StdIn.readLine("1 or 2 : ").toInt
-        
+            println("Cesar's cipher algorithm")
+            println("1. Encrypt message")
+            println("2. Decrypt message")
+            val choice = scala.io.StdIn.readLine("1 or 2 : ").toInt
 
-        if(choice == 1) encryption()
-        else if(choice == 2) decryption()
-        else println("Invalid input")
+            choice match {
+                case choice if (choice == 1) => encryption()
+                case choice if (choice == 2) => decryption()
+                case _ => println("Invalid input")
+            }
     }
 
 
