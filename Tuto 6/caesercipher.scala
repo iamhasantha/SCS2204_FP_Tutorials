@@ -15,11 +15,12 @@ object caeserCipher{
                 c // return character if it's not in the alphabet
             }
             else {
-                alphabet((ch + shift) % alphabet.size)
+                // return the relevant character after shifting
+                alphabet((ch + shift) % alphabet.size) 
             }
         });
 
-        println(encryptedMsg);
+        println(encryptedMsg); // print encrypted message
     }
     
     def decryption():Any={
@@ -34,10 +35,20 @@ object caeserCipher{
                 c
             }
             else {
+                // return the relevant character after backwarding
                 alphabet((ch + back) % alphabet.size)
             }
         });
-        println(decryptedMsg);
+        println(decryptedMsg); //print the decrypted message
+    }
+
+    // select encryption or decryption
+    def cipher(choice:Int):Any={
+        choice match {
+            case 1 => encryption()
+            case 2 => decryption()
+            case _ => println("Invalid input")
+        }
     }
 
     def main(args: Array[String]) = {
@@ -46,10 +57,6 @@ object caeserCipher{
             println("2. Decrypt message")
             val choice = scala.io.StdIn.readLine("1 or 2 : ").toInt
 
-            choice match {
-                case choice if (choice == 1) => encryption()
-                case choice if (choice == 2) => decryption()
-                case _ => println("Invalid input")
-            }
+            cipher(choice)
     }
 }
